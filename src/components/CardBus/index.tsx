@@ -9,7 +9,7 @@ type CardBusPropType = {
 const CardBus = ({ bus }: CardBusPropType) => (
   <Card sx={{m: 0.1}}>
     <CardContent>
-      {bus.label}
+      {bus.name}
     </CardContent>
   </Card>
 );

@@ -1,38 +1,95 @@
-import { IdBundle, StationDocument } from '../types';
+import { IdBundle, StopDocument } from '../types';
+import makeGraphQuery from '../utility/makeGraphQuery';
+import testStops from '../testStops.json';
+
+interface ApiResponse extends Response {
+  data: {
+    stops?: IdBundle[];
+    stop?: StopDocument;
+  };
+}
+
+const fetcher = async (body: { query: string }): Promise<ApiResponse> => {
+  const baseUrl =
+    'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
+  const options = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  };
+  const response = await fetch(baseUrl, options).then((res) => res.json());
+  return response;
+};
 
 const useApi = () => {
   const sendRequest = async (
     route: string,
     id: string = ''
-  ): Promise<IdBundle[] | StationDocument> => {
+  ): Promise<IdBundle[] | StopDocument> => {
     console.log(`now fetching ${route}${id ? id : ''}`);
+
+    let errorMessage: StopDocument | IdBundle[] = {
+      gtfsId: '0',
+      name: 'Error',
+      desc: 'Error querying data',
+    }; //default error message
+    let query: { query: string } | null = { query: '' }; //default query
+    let process: (arg0: ApiResponse) => StopDocument | IdBundle[] | undefined; //default type for process function
+
     switch (route) {
     case 'stops':
-      return [
-        { id: '10', label: 'Helsinki' },
-        { id: '20', label: 'Espoo' },
-      ];
+      //fetch list of all stops (thousands)
+
+      //for testing during development, to avoid spamming the API
+      /*return testStops.data.stops.filter(
+        (each: IdBundle) => each.vehicleMode === 'BUS'
+      );*/
+      
+      errorMessage = [{ gtfsId: '0', name: 'Error querying stops data' }];
+      query = makeGraphQuery('stops', ['gtfsId', 'name', 'vehicleMode']);
+      process = (res: ApiResponse) => {
+        let processed;
+        if (res.data.stops) {
+          processed = res.data.stops.filter(
+            (each) => each.vehicleMode === 'BUS'
+          );
+          console.log(processed.length);
+        }
+        return processed;
+      };
+      break;
     case 'stop':
       //use id to get particular stop details and list of buses
-      switch (id) {
-      case '10':
-        return {
-          details: 'This is a station in central Helsinki',
-          busses: [{ id: '30', label: 'bus 1' }],
-        };
-      case '20':
-        return {
-          details: 'This is a station in the middle of a tech hub in Espoo',
-          busses: [{ id: '40', label: 'bus 2' }],
-        };
-      default:
-        return {
-          details: '',
-          busses: [],
-        };
-      }
+      errorMessage = {
+        gtfsId: '0',
+        name: 'Error',
+        desc: 'Error querying stop data',
+      };
+      query = makeGraphQuery('stop', ['gtfsId', 'name', 'desc'], 'id', id);
+      process = (res: ApiResponse) => res.data.stop;
+      break;
     default:
       return [];
+    }
+
+    if (!query) {
+      return errorMessage;
+    }
+
+    try {
+      let response = await fetcher(query);
+      console.log(response);
+      let result = process(response);
+      if (!result) {
+        return errorMessage;
+      }
+      return result;
+    } catch (err) {
+      console.log(err);
+      return errorMessage;
     }
   };
   return [sendRequest];

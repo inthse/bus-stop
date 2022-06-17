@@ -1,0 +1,101 @@
+{
+  "data": {
+    "stops": [
+      {
+        "gtfsId": "HSL:6150219",
+        "name": "Louhosmäki",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:6150218",
+        "name": "Solvik",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:6150217",
+        "name": "Evitskog",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:6150216",
+        "name": "Evitskogin VPK",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:6150215",
+        "name": "Evitskogin VPK",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:1465177",
+        "name": "Vanha viertotie",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:6150225",
+        "name": "Karhusuontie",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:2312219",
+        "name": "Kalastajankuja",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:6150224",
+        "name": "Karhusuontie",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:2222234",
+        "name": "Aalto-yliopisto (M)",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:6150222",
+        "name": "Solvik",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:6150221",
+        "name": "Louhosmäki",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:1310602",
+        "name": "Lauttasaari",
+        "vehicleMode": "SUBWAY"
+      },
+      {
+        "gtfsId": "HSL:1310601",
+        "name": "Lauttasaari",
+        "vehicleMode": "SUBWAY"
+      },
+      {
+        "gtfsId": "HSL:1310604",
+        "name": "Koivusaari",
+        "vehicleMode": "SUBWAY"
+      },
+      {
+        "gtfsId": "HSL:1310603",
+        "name": "Koivusaari",
+        "vehicleMode": "SUBWAY"
+      },
+      {
+        "gtfsId": "HSL:2312216",
+        "name": "Nuottalahti",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:2312217",
+        "name": "Nuottalahti",
+        "vehicleMode": "BUS"
+      },
+      {
+        "gtfsId": "HSL:2312218",
+        "name": "Kalastajankuja",
+        "vehicleMode": "BUS"
+      }
+    ]
+  }
+}

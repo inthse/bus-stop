@@ -9,19 +9,21 @@ import {
 } from '@mui/material';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 
-import { StationDocument } from '../../types';
+import { StopDocument } from '../../types';
 import CardBus from '../CardBus';
 
 type CardBusStopPropType = {
-  youSelected: string;
-  stationName: string;
-  station: StationDocument;
+  stop: StopDocument;
+  stopName: string;
+  labels: {
+    [key: string]: string;
+  };
 };
 
 const CardBusStop = ({
-  youSelected,
-  stationName,
-  station,
+  stop,
+  stopName,
+  labels,
 }: CardBusStopPropType) => (
   <Paper elevation={0} sx={{ p: 1, width: '100%' }}>
     <Box
@@ -31,26 +33,26 @@ const CardBusStop = ({
         justifyContent: 'space-evenly',
       }}
     >
-      <Typography>{youSelected}</Typography>
-      <Chip variant="outlined" label={stationName} sx={{m: 1}}/>
+      <Typography>{labels.youSelected}</Typography>
+      <Chip variant="outlined" label={stopName} sx={{m: 1}}/>
     </Box>
     <Accordion defaultExpanded={true}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{background: 'rgba(0,150,135,0.1)'}}>
-        <Typography>Station Details</Typography>
+        <Typography>{labels.stopDetails}</Typography>
       </AccordionSummary>
       <AccordionDetails sx={{p: '8px'}}>
-        <Typography>{station.details}</Typography>
+        <Typography>{stop.desc}</Typography>
       </AccordionDetails>
     </Accordion>
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{background: 'rgba(0,150,135,0.1)'}}>
-        <Typography>Bus List</Typography>
+        <Typography>{labels.busList}</Typography>
       </AccordionSummary>
       <AccordionDetails sx={{p: '8px'}}>
-        {station.busses.length === 0 ? (
-          <Typography>No busses listed</Typography>
+        {!stop.routes || stop.routes.length === 0 ? (
+          <Typography>{labels.noBusses}</Typography>
         ) : (
-          station.busses.map((each) => <CardBus key={each.id} bus={each} />)
+          stop.routes.map((each) => <CardBus key={each.gtfsId} bus={each} />)
         )}
       </AccordionDetails>
     </Accordion>

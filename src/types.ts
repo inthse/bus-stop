@@ -9,12 +9,21 @@ export type DisplayType = {
 
 export type LangType = keyof DisplayType;
 
-export type  IdBundle = {
-  id: string; //data identifier
-  label: string; //human readable name
+//for each stop in list of stops
+export type IdBundle = {
+  gtfsId: string; //data identifier
+  name: string; //human readable name
+  vehicleMode?: string; //e.g. BUS
 };
 
-export type StationDocument = {
-  details: string;
-  busses: Array<IdBundle>;
+//for details of individual stops
+export type StopDocument = {
+  gtfsId: string;
+  name: string;
+  desc: string;
+  lat?: number;
+  lon?: number;
+  zoneId?: string;
+  routes?: Array<IdBundle>;
+  vehicleMode?: string; //e.g. BUS
 };

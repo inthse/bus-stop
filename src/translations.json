@@ -1,0 +1,16 @@
+{
+  "en": {
+    "busStop": "Bus Stop",
+    "youSelected": "Selected bus stop:",
+    "stopDetails": "Station Details",
+    "busList": "Bus List",
+    "noBusses": "No busses listed"
+  },
+  "fi": {
+    "busStop": "Bus Stop",
+    "youSelected": "Selected bus stop:",
+    "stopDetails": "Station Details",
+    "busList": "Bus List",
+    "noBusses": "No busses listed"
+  }
+}

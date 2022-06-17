@@ -17,20 +17,28 @@ const SelectBusStop = ({
   value,
 }: SelectBusStopPropType) => {
   //simple value for what the user is typing
-  const [stationInputValue, setStationInputValue] = useState('');
+  const [stopInputValue, setStopInputValue] = useState('');
   const handleChange = (newInput: string) => {
-    setStationInputValue(newInput);
+    setStopInputValue(newInput);
   };
 
   return (
     <Autocomplete
-      id="bus-stop-field"
+      id="select-bus-stop"
       options={options}
+      getOptionLabel={(option) => option.name}
+      renderOption={(props, option) => {
+        return (
+          <li {...props} key={option.gtfsId}>
+            {option.name} ({option.gtfsId})
+          </li>
+        );
+      }}
       renderInput={(params) => (
         <TextField {...params} required label={label} margin="normal" />
       )}
       fullWidth={true}
-      inputValue={stationInputValue}
+      inputValue={stopInputValue}
       onInputChange={(_event, newInputValue) => {
         handleChange(newInputValue);
       }}
