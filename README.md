@@ -1,46 +1,21 @@
-# Getting Started with Create React App
+# Linja - find your bus connection
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+View the app live at [insert actual link here](http://localhost:3000)
 
-## Available Scripts
+## Description
+**Linja** is a simple web app created to help people in the Helsinki area search for bus stops by name, see the stop details, and view all busses that visit the stop. The UI language can be switched between Finnish and English.
 
-In the project directory, you can run:
+## Installation instructions to run locally
+Clone this repository and run `npm install` in the root directory. Run `npm start` to start the app in development mode, or `npm test` to run tests.
 
-### `npm start`
+### Directory structure
+In the `src` folder, the main body of the app can be found in `App.tsx` while individual components can be found in their own `components` subfolders. Some logic can be found in separate functions in the `hooks` and `utility` folders. There are also a few tests, which are located with the files they test.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tech stack
+This app was made using [Create React App](https://github.com/facebook/create-react-app) and TypeScript. Tests are written with Jest. Styling is done with the Material UI library and regular CSS. Data source is the [DigiTransit API](https://digitransit.fi/en/developers/apis/1-routing-api/). Because this app only needs to make a few GraphQL queries, the native `fetch` function was used instead of installing an entire GraphQL library.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Next steps
+If development continues, some features for the next version could include:
+- display any active alerts for each bus route
+- display a small map using the latitude and longitude data instead of only a link to Google Maps
+- ask for browser location permission to automatically find the nearest bus stops

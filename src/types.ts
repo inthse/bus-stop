@@ -6,6 +6,14 @@ export type LabelType = {
 //for properties of imported translations file
 export type LangType = keyof LabelType;
 
+//for details of routes (busses)
+export type DetailRoute = {
+  gtfsId: string;
+  shortName: string;
+  longName: string;
+  bikesAllowed?: string; //e.g. NO_INFORMATION, NOT_ALLOWED, ALLOWED
+};
+
 //for each stop in list of stops
 export type ShortStop = {
   gtfsId: string; //data identifier
@@ -21,6 +29,7 @@ export type DetailStop = {
   lat?: number;
   lon?: number;
   zoneId?: string;
-  routes?: Array<ShortStop>;
-  vehicleMode?: string; //e.g. BUS
+  locationType?: string; //e.g. STATION or STOP
+  wheelchairBoarding?: string; //e.g. NO_INFORMATION, POSSIBLE, NOT_POSSIBLE
+  routes?: Array<DetailRoute>;
 };

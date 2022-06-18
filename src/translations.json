@@ -2,8 +2,12 @@
   "en": {
     "busStop": "Bus Stop",
     "CardBusStop": {
-      "youSelected": "You selected:",
+      "youSelected": "You selected",
       "stopDetails": "Stop Details",
+      "locationType": "Stop or station",
+      "stop": "stop",
+      "station": "station",
+      "zone": "Zone",
       "busList": "Bus List",
       "noBusses": "No busses listed"
     }
@@ -11,8 +15,12 @@
   "fi": {
     "busStop": "Bussipysäkki",
     "CardBusStop": {
-      "youSelected": "Valintasi:",
+      "youSelected": "Valintasi",
       "stopDetails": "Bussipysäkin Tiedot",
+      "locationType": "Pysäkki tai asema",
+      "stop": "pysäkki",
+      "station": "asema",
+      "zone": "Vyöhyke",
       "busList": "Bussiluettelo",
       "noBusses": "Listalla ei ole linja-autoja"
     }

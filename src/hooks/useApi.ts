@@ -69,7 +69,9 @@ const useApi = () => {
         name: 'Error',
         desc: 'Error querying stop data',
       };
-      query = makeGraphQuery('stop', ['gtfsId', 'name', 'desc'], 'id', id);
+      query = makeGraphQuery('stop', ['gtfsId', 'name', 'desc', 'locationType', 'lat', 'lon', 'wheelchairBoarding', 'zoneId'], 'id', id);
+      const query2 = makeGraphQuery('routes', ['gtfsId', 'shortName', 'longName']);
+      console.log(query2);
       process = (res: ApiResponse) => res.data.stop;
       break;
     default:
