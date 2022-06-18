@@ -11,8 +11,7 @@ const fields = [
 
 const expectedResults = [
   '{\nstop(id: "HSL:1040129") {\nname\nlat\nlon\nwheelchairBoarding\n}\n}',
-  '{\nstops {\ngtfsId\nname\nlat\nlon\nzoneId\n}\n}',
-  null
+  '{\nstops {\ngtfsId\nname\nlat\nlon\nzoneId\n}\n}'
 ];
 
 test('converts arguments into valid graphql query', () => {
@@ -21,9 +20,17 @@ test('converts arguments into valid graphql query', () => {
 
   const result1 = makeGraphQuery(which[1], fields[1]);
   expect(result1).toHaveProperty('query', expectedResults[1]);
+});
 
-  const result2 = makeGraphQuery();
-  expect(result2).toBe(expectedResults[2]);
+test('converts arguments into valid nested graphql query', () => {
+  const expectedResult = '{\nstop(id: "HSL:1040129") {\ngtfsId\nname\ndesc\nroutes {\ngtfsId\nshortName\nlongName\n}\n}\n}';
+
+  let query;
+  const nested = makeGraphQuery('routes', ['gtfsId', 'shortName', 'longName'], '', '', true);
+  if(nested) {
+    query = makeGraphQuery('stop', ['gtfsId', 'name', 'desc', nested.query], 'id', 'HSL:1040129');
+  }
+  expect(query).toHaveProperty('query', expectedResult);
 });
 
 

@@ -8,8 +8,11 @@
       "stop": "stop",
       "station": "station",
       "zone": "Zone",
-      "busList": "Bus List",
-      "noBusses": "No busses listed"
+      "routeList": "Route List",
+      "noRoutes": "No routes listed",
+      "nextBusses": "Next busses",
+      "noBusses": "No busses listed",
+      "CardRoute": ""
     }
   },
   "fi": {
@@ -21,8 +24,11 @@
       "stop": "pysäkki",
       "station": "asema",
       "zone": "Vyöhyke",
-      "busList": "Bussiluettelo",
-      "noBusses": "Listalla ei ole linja-autoja"
+      "routeList": "Reittiluettelo",
+      "noRoutes": "Luettelossa ei ole reittejä",
+      "nextBusses": "Seuraavat bussit:",
+      "noBusses": "Luettelossa ei ole linja-autoja",
+      "CardRoute": ""
     }
   }
 }

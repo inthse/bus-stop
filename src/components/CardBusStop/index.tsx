@@ -7,20 +7,20 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import { ExpandMoreIcon, BikeIcon, NoBikeIcon, NoWheelchairIcon, WheelchairIcon } from '../MaterialIcons';
+import { ExpandMoreIcon, NoWheelchairIcon, WheelchairIcon } from '../MaterialIcons';
 
 import { DetailStop } from '../../types';
-import CardBus from '../CardBus';
+import CardRoute from '../CardRoute';
 
 type CardBusStopPropType = {
-  stop: DetailStop;
-  stopName: string;
   labels: {
     [key: string]: string;
   };
+  stop: DetailStop;
+  stopName: string;
 };
 
-const CardBusStop = ({ stop, stopName, labels }: CardBusStopPropType) => (
+const CardBusStop = ({ labels, stop, stopName }: CardBusStopPropType) => (
   <Paper elevation={0} sx={{ p: 1, width: '100%' }}>
     <Box
       sx={{
@@ -74,14 +74,25 @@ const CardBusStop = ({ stop, stopName, labels }: CardBusStopPropType) => (
         expandIcon={<ExpandMoreIcon />}
         sx={{ background: 'rgba(0,150,136,0.2)' }}
       >
-        <Typography>{labels.busList}</Typography>
+        <Typography>{labels.routeList}</Typography>
       </AccordionSummary>
       <AccordionDetails sx={{ p: '8px' }}>
         {!stop.routes || stop.routes.length === 0 ? (
-          <Typography>{labels.noBusses}</Typography>
+          <Typography>{labels.noRoutes}</Typography>
         ) : (
-          stop.routes.map((each) => <CardBus key={each.gtfsId} bus={each} />)
+          stop.routes.map((each) => <CardRoute key={each.gtfsId} route={each} labels={labels} />)
         )}
+      </AccordionDetails>
+    </Accordion>
+    <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        sx={{ background: 'rgba(0,150,136,0.2)' }}
+      >
+        <Typography>{labels.nextBusses}</Typography>
+      </AccordionSummary>
+      <AccordionDetails sx={{ p: '8px' }}>
+        <Typography>{labels.noBusses}</Typography>
       </AccordionDetails>
     </Accordion>
   </Paper>

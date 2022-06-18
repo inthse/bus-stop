@@ -20,7 +20,13 @@ const fetcher = async (body: { query: string }): Promise<ApiResponse> => {
     },
     body: JSON.stringify(body),
   };
-  const response = await fetch(baseUrl, options).then((res) => res.json());
+  let response;
+  try {
+    response = await fetch(baseUrl, options).then((res) => res.json());
+  } catch(err) {
+    console.log(err);
+    response = null;
+  }
   return response;
 };
 
@@ -28,10 +34,10 @@ const useApi = () => {
   const sendRequest = async (
     route: string,
     id: string = ''
-  ): Promise<ShortStop[] | DetailStop> => {
+  ): Promise<ShortStop[] | DetailStop | Partial<DetailStop>> => {
     console.log(`now fetching ${route}${id ? id : ''}`);
 
-    let errorMessage: DetailStop | ShortStop[] = {
+    let errorMessage: Partial<DetailStop> | ShortStop[] = {
       gtfsId: '0',
       name: 'Error',
       desc: 'Error querying data',
@@ -69,31 +75,42 @@ const useApi = () => {
         name: 'Error',
         desc: 'Error querying stop data',
       };
-      query = makeGraphQuery('stop', ['gtfsId', 'name', 'desc', 'locationType', 'lat', 'lon', 'wheelchairBoarding', 'zoneId'], 'id', id);
-      const query2 = makeGraphQuery('routes', ['gtfsId', 'shortName', 'longName']);
-      console.log(query2);
+      const routesNested = makeGraphQuery(
+        'routes',
+        ['gtfsId', 'shortName', 'longName', 'bikesAllowed'],
+        '',
+        '',
+        true
+      );
+      query = makeGraphQuery(
+        'stop',
+        [
+          'gtfsId',
+          'name',
+          'desc',
+          'locationType',
+          'lat',
+          'lon',
+          'wheelchairBoarding',
+          'zoneId',
+          routesNested.query
+        ],
+        'id',
+        id
+      );
       process = (res: ApiResponse) => res.data.stop;
       break;
     default:
       return [];
     }
 
-    if (!query) {
+    let response = await fetcher(query);
+    console.log(response);
+    let result = process(response);
+    if (!result) {
       return errorMessage;
     }
-
-    try {
-      let response = await fetcher(query);
-      console.log(response);
-      let result = process(response);
-      if (!result) {
-        return errorMessage;
-      }
-      return result;
-    } catch (err) {
-      console.log(err);
-      return errorMessage;
-    }
+    return result;
   };
   return [sendRequest];
 };

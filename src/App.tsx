@@ -14,8 +14,19 @@ const App = () => {
   const defaultShortStop: ShortStop = {
     gtfsId: '',
     name: '',
+    vehicleMode: '',
   };
-  const defaultStop: DetailStop = { gtfsId: '', name: '', desc: '' };
+  const defaultStop: DetailStop = {
+    gtfsId: '',
+    name: '',
+    desc: '',
+    lat: 0,
+    lon: 0,
+    zoneId: '',
+    locationType: '',
+    wheelchairBoarding: '',
+    routes: [],
+  };
 
   //state getters and setters
   const [lang, setLang] = useState('en') as [
@@ -25,6 +36,7 @@ const App = () => {
   const [stopValue, setStopValue] = useState(defaultShortStop); //to be picked by user
   const [stopList, setStopList] = useState([defaultShortStop]); //immediately fetched from api
   const [stop, setStop] = useState(defaultStop); //will be fetched from api
+  const [loading, setLoading] = useState(false); //for displaying loading indicator
   const [sendRequest] = useApi();
 
   //fetched when component mounts
@@ -39,6 +51,8 @@ const App = () => {
   //called when user picks a stop from the list
   const pickStop = async (newValue: ShortStop | null) => {
     if (newValue) {
+      //display loading indicator
+      setLoading(true);
       //set value in state
       setStopValue(newValue);
       //send query to api
@@ -46,6 +60,8 @@ const App = () => {
         'stop',
         newValue.gtfsId
       )) as DetailStop;
+      //remove loading indicator so response will display
+      setLoading(false);
       setStop(response);
     } else {
       //if user's selection is null, revert to default
@@ -67,11 +83,13 @@ const App = () => {
         {!stopValue.gtfsId ? (
           <img width="100%" src={busStopImage} alt="bus stop" />
         ) : (
-          <CardBusStop
-            stop={stop}
-            stopName={stopValue.name}
-            labels={labels[lang].CardBusStop}
-          />
+          loading ? ('Loading...') : (
+            <CardBusStop
+              labels={labels[lang].CardBusStop}
+              stop={stop}
+              stopName={stopValue.name}
+            />
+          )
         )}
       </main>
     </>
