@@ -1,11 +1,11 @@
-import { IdBundle, StopDocument } from '../types';
+import { ShortStop, DetailStop } from '../types';
 import makeGraphQuery from '../utility/makeGraphQuery';
-import testStops from '../testStops.json';
+import mockStops from '../testStops.json';
 
 interface ApiResponse extends Response {
   data: {
-    stops?: IdBundle[];
-    stop?: StopDocument;
+    stops?: ShortStop[];
+    stop?: DetailStop;
   };
 }
 
@@ -28,26 +28,26 @@ const useApi = () => {
   const sendRequest = async (
     route: string,
     id: string = ''
-  ): Promise<IdBundle[] | StopDocument> => {
+  ): Promise<ShortStop[] | DetailStop> => {
     console.log(`now fetching ${route}${id ? id : ''}`);
 
-    let errorMessage: StopDocument | IdBundle[] = {
+    let errorMessage: DetailStop | ShortStop[] = {
       gtfsId: '0',
       name: 'Error',
       desc: 'Error querying data',
     }; //default error message
     let query: { query: string } | null = { query: '' }; //default query
-    let process: (arg0: ApiResponse) => StopDocument | IdBundle[] | undefined; //default type for process function
+    let process: (arg0: ApiResponse) => DetailStop | ShortStop[] | undefined; //default type for process function
 
     switch (route) {
     case 'stops':
       //fetch list of all stops (thousands)
 
       //for testing during development, to avoid spamming the API
-      /*return testStops.data.stops.filter(
-        (each: IdBundle) => each.vehicleMode === 'BUS'
-      );*/
-      
+      return mockStops.data.stops.filter(
+        (each: ShortStop) => each.vehicleMode === 'BUS'
+      );
+      /*
       errorMessage = [{ gtfsId: '0', name: 'Error querying stops data' }];
       query = makeGraphQuery('stops', ['gtfsId', 'name', 'vehicleMode']);
       process = (res: ApiResponse) => {
@@ -61,6 +61,7 @@ const useApi = () => {
         return processed;
       };
       break;
+      */
     case 'stop':
       //use id to get particular stop details and list of buses
       errorMessage = {

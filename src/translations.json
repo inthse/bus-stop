@@ -1,16 +1,20 @@
 {
   "en": {
     "busStop": "Bus Stop",
-    "youSelected": "Selected bus stop:",
-    "stopDetails": "Station Details",
-    "busList": "Bus List",
-    "noBusses": "No busses listed"
+    "CardBusStop": {
+      "youSelected": "You selected:",
+      "stopDetails": "Stop Details",
+      "busList": "Bus List",
+      "noBusses": "No busses listed"
+    }
   },
   "fi": {
-    "busStop": "Bus Stop",
-    "youSelected": "Selected bus stop:",
-    "stopDetails": "Station Details",
-    "busList": "Bus List",
-    "noBusses": "No busses listed"
+    "busStop": "Bussipysäkki",
+    "CardBusStop": {
+      "youSelected": "Valintasi:",
+      "stopDetails": "Bussipysäkin Tiedot",
+      "busList": "Bussiluettelo",
+      "noBusses": "Listalla ei ole linja-autoja"
+    }
   }
 }

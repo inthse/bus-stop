@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Autocomplete, TextField } from '@mui/material';
 
-import { IdBundle } from '../../types';
+import { ShortStop } from '../../types';
 
 type SelectBusStopPropType = {
   label: string;
-  options: Array<IdBundle>;
-  setValue: (arg0: IdBundle | null) => void;
-  value: IdBundle;
+  options: Array<ShortStop>;
+  setValue: (arg0: ShortStop | null) => void;
+  value: ShortStop;
 };
 
 const SelectBusStop = ({

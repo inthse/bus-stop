@@ -7,13 +7,13 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+import ExpandMoreIcon from '../ExpandMoreIcon';
 
-import { StopDocument } from '../../types';
+import { DetailStop } from '../../types';
 import CardBus from '../CardBus';
 
 type CardBusStopPropType = {
-  stop: StopDocument;
+  stop: DetailStop;
   stopName: string;
   labels: {
     [key: string]: string;
@@ -37,7 +37,7 @@ const CardBusStop = ({
       <Chip variant="outlined" label={stopName} sx={{m: 1}}/>
     </Box>
     <Accordion defaultExpanded={true}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{background: 'rgba(0,150,135,0.1)'}}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{background: 'rgba(0,150,136,0.2)'}}>
         <Typography>{labels.stopDetails}</Typography>
       </AccordionSummary>
       <AccordionDetails sx={{p: '8px'}}>
@@ -45,7 +45,7 @@ const CardBusStop = ({
       </AccordionDetails>
     </Accordion>
     <Accordion>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{background: 'rgba(0,150,135,0.1)'}}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{background: 'rgba(0,150,136,0.2)'}}>
         <Typography>{labels.busList}</Typography>
       </AccordionSummary>
       <AccordionDetails sx={{p: '8px'}}>

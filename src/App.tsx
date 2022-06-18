@@ -1,44 +1,43 @@
 import { useEffect, useState } from 'react';
-import { Typography } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 
-import { IdBundle, LangType, StopDocument } from './types';
+import { ShortStop, LangType, DetailStop } from './types';
+import TitleBar from './components/TitleBar';
 import SelectBusStop from './components/SelectBusStop';
 import CardBusStop from './components/CardBusStop';
 import useApi from './hooks/useApi';
-import busStopImage from './undraw_bus_stop.svg';
+import busStopImage from './assets/undraw_bus_stop.svg';
 import labels from './translations.json'; //interface text in different languages
 
 const App = () => {
   //state default values
-  const defaultBundle: IdBundle = {
+  const defaultShortStop: ShortStop = {
     gtfsId: '',
     name: '',
   };
-  const defaultArray: IdBundle[] = [];
-  const defaultStop: StopDocument = { gtfsId: '', name: '', desc: '' };
+  const defaultStop: DetailStop = { gtfsId: '', name: '', desc: '' };
 
   //state getters and setters
   const [lang, setLang] = useState('en') as [
     LangType,
     (arg0: LangType) => void
   ]; //for setting interface language
-  const [stopValue, setStopValue] = useState(defaultBundle); //picked by user
-  const [stopList, setStopList] = useState(defaultArray); //fetched from api
-  const [stop, setStop] = useState(defaultStop); //fetched from api
+  const [stopValue, setStopValue] = useState(defaultShortStop); //to be picked by user
+  const [stopList, setStopList] = useState([defaultShortStop]); //immediately fetched from api
+  const [stop, setStop] = useState(defaultStop); //will be fetched from api
   const [sendRequest] = useApi();
 
   //fetched when component mounts
   useEffect(() => {
     async function fetchInitialData() {
-      const response = (await sendRequest('stops')) as IdBundle[];
-      //todo: validate response
+      const response = (await sendRequest('stops')) as ShortStop[];
       setStopList(response);
     }
     fetchInitialData();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   //called when user picks a stop from the list
-  const pickStop = async (newValue: IdBundle | null) => {
+  const pickStop = async (newValue: ShortStop | null) => {
     if (newValue) {
       //set value in state
       setStopValue(newValue);
@@ -46,33 +45,36 @@ const App = () => {
       const response = (await sendRequest(
         'stop',
         newValue.gtfsId
-      )) as StopDocument;
+      )) as DetailStop;
       setStop(response);
     } else {
       //if user's selection is null, revert to default
-      setStopValue(defaultBundle);
+      setStopValue(defaultShortStop);
     }
   };
 
   return (
-    <main>
-      <Typography component="h1">Linja</Typography>
-      <SelectBusStop
-        label={labels[lang].busStop}
-        value={stopValue}
-        setValue={pickStop}
-        options={stopList}
-      />
-      {!stopValue.gtfsId ? (
-        <img width="100%" src={busStopImage} alt="bus stop" />
-      ) : (
-        <CardBusStop
-          stop={stop}
-          stopName={stopValue.name}
-          labels={labels[lang]}
+    <>
+      <CssBaseline />
+      <TitleBar lang={lang} setLang={setLang} />
+      <main>
+        <SelectBusStop
+          label={labels[lang].busStop}
+          value={stopValue}
+          setValue={pickStop}
+          options={stopList}
         />
-      )}
-    </main>
+        {!stopValue.gtfsId ? (
+          <img width="100%" src={busStopImage} alt="bus stop" />
+        ) : (
+          <CardBusStop
+            stop={stop}
+            stopName={stopValue.name}
+            labels={labels[lang].CardBusStop}
+          />
+        )}
+      </main>
+    </>
   );
 };
 

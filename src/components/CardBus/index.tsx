@@ -1,9 +1,9 @@
 import { Card, CardContent } from '@mui/material';
 
-import { IdBundle } from '../../types';
+import { ShortStop } from '../../types';
 
 type CardBusPropType = {
-  bus: IdBundle;
+  bus: ShortStop;
 };
 
 const CardBus = ({ bus }: CardBusPropType) => (

@@ -1,29 +1,26 @@
-type PerLanguage = {
-  [key: string]: string;
+export type LabelType = {
+  en: { [key: string]: string; };
+  fi: { [key: string]: string; };
 };
 
-export type DisplayType = {
-  en: PerLanguage;
-  fi: PerLanguage;
-};
-
-export type LangType = keyof DisplayType;
+//for properties of imported translations file
+export type LangType = keyof LabelType;
 
 //for each stop in list of stops
-export type IdBundle = {
+export type ShortStop = {
   gtfsId: string; //data identifier
   name: string; //human readable name
   vehicleMode?: string; //e.g. BUS
 };
 
 //for details of individual stops
-export type StopDocument = {
+export type DetailStop = {
   gtfsId: string;
   name: string;
   desc: string;
   lat?: number;
   lon?: number;
   zoneId?: string;
-  routes?: Array<IdBundle>;
+  routes?: Array<ShortStop>;
   vehicleMode?: string; //e.g. BUS
 };
