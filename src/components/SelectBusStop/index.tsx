@@ -1,18 +1,22 @@
 import { useState } from 'react';
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, CircularProgress, TextField } from '@mui/material';
 
-import { ShortStop } from '../../types';
+import { NestedLabel, ShortStop } from '../../types';
 
 type SelectBusStopPropType = {
-  label: string;
+  labels: NestedLabel;
+  loading: boolean;
   options: Array<ShortStop>;
+  searchValue: (arg0: string) => void;
   setValue: (arg0: ShortStop | null) => void;
   value: ShortStop;
 };
 
 const SelectBusStop = ({
-  label,
+  labels,
+  loading,
   options,
+  searchValue,
   setValue,
   value,
 }: SelectBusStopPropType) => {
@@ -20,22 +24,27 @@ const SelectBusStop = ({
   const [stopInputValue, setStopInputValue] = useState('');
   const handleChange = (newInput: string) => {
     setStopInputValue(newInput);
+    if(newInput.length > 0) {
+      searchValue(newInput);
+    }
   };
 
   return (
     <Autocomplete
       id="select-bus-stop"
+      loading={loading}
+      loadingText={<CircularProgress />}
       options={options}
       getOptionLabel={(option) => option.name}
       renderOption={(props, option) => {
         return (
           <li {...props} key={option.gtfsId}>
-            {option.name} ({option.gtfsId})
+            {option.name} ({option.gtfsId ? option.gtfsId : labels.typeToSearch})
           </li>
         );
       }}
       renderInput={(params) => (
-        <TextField {...params} required label={label} margin="normal" />
+        <TextField {...params} required label={labels.busStop} margin="normal" />
       )}
       fullWidth={true}
       inputValue={stopInputValue}

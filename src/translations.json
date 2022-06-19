@@ -1,7 +1,8 @@
 {
   "en": {
     "app" : {
-      "busStop": "Bus Stop"
+      "busStop": "Bus Stop",
+      "typeToSearch": "Type to search"
     },
     "busStop": {
       "stopDetails": "Stop Details",
@@ -25,7 +26,8 @@
   },
   "fi": {
     "app" : {
-      "busStop": "Bussipysäkki"
+      "busStop": "Bussipysäkki",
+      "typeToSearch": "Hae kirjoittamalla"
     },
     "busStop": {
       "stopDetails": "Bussipysäkin tiedot",
@@ -34,17 +36,17 @@
       "station": "asema",
       "zone": "Vyöhyke",
       "routeList": "Reitit",
-      "noRoutes": "Listalla ei ole reittejä",
+      "noRoutes": "ei reittejä",
       "nextBusses": "Bussit",
-      "noBusses": "Listalla ei ole busseja"
+      "noBusses": "ei busseja"
     },
     "pattern": {
-      "date": "Date",
-      "arrival": "Arrival time",
-      "departure": "Departure time",
-      "aheadOfSchedule": "ahead of schedule",
-      "behindSchedule": "behind schedule",
-      "onTime": "on time"
+      "date": "Päivämäärä",
+      "arrival": "Saapumisaika",
+      "departure": "Lähtöaika",
+      "aheadOfSchedule": "aikataulua edellä",
+      "behindSchedule": "aikataulusta jäljessä",
+      "onTime": "ajallaan"
     }
   }
 }

@@ -7,15 +7,15 @@ import {
   Typography,
 } from '@mui/material';
 
+import { DetailStop, NestedLabel } from '../../types';
+import CardRoute from '../CardRoute';
+import DisplayPatterns from '../DisplayPatterns';
 import {
   ExpandMoreIcon,
   MapIcon,
   NoWheelchairIcon,
   WheelchairIcon,
 } from '../MaterialIcons';
-import { DetailStop, NestedLabel } from '../../types';
-import CardRoute from '../CardRoute';
-import DisplayPatterns from '../DisplayPatterns';
 
 type CardBusStopPropType = {
   labels: {
@@ -68,10 +68,11 @@ const CardBusStop = ({ labels, stop }: CardBusStopPropType) => {
                 clickable
               />
             )}
-            {stop.wheelchairBoarding === 'NO_INFORMATION' ? (
+            {stop.wheelchairBoarding === 'NOT_POSSIBLE' ? (
               <Chip
-                icon={<WheelchairIcon titleAccess="wheelchair access unknown" />}
-                label="?"
+                icon={<NoWheelchairIcon />}
+                label="✗"
+                color="error"
                 variant="outlined"
                 sx={{ m: 1 }}
               />
@@ -86,15 +87,13 @@ const CardBusStop = ({ labels, stop }: CardBusStopPropType) => {
                 />
               ) : (
                 <Chip
-                  icon={<NoWheelchairIcon />}
-                  label="✗"
-                  color="error"
+                  icon={<WheelchairIcon titleAccess="wheelchair access unknown" />}
+                  label="?"
                   variant="outlined"
                   sx={{ m: 1 }}
                 />
               )
-            )
-            }
+            )}
           </Paper>
         </AccordionDetails>
       </Accordion>
