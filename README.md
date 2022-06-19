@@ -1,6 +1,6 @@
 # Linja - find your bus connection
 
-View the app live at [insert actual link here](http://localhost:3000)
+View the app live on [Netlify](https://linja-busapp.netlify.app/)
 
 ## Description
 **Linja** is a simple web app created to help people in the Helsinki area search for bus stops by name, see the stop details, and view all busses that visit the stop. The UI language can be switched between Finnish and English.
