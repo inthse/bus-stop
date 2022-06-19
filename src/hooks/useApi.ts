@@ -42,7 +42,6 @@ const useApi = () => {
     route: string,
     term: string = ''
   ): Promise<ShortStop[] | DetailStop | Partial<DetailStop>> => {
-    console.log(`now fetching ${route} ${term ? term : ''}`);
 
     let errorMessage: Partial<DetailStop> | ShortStop[] = {
       gtfsId: '0',
@@ -111,7 +110,7 @@ const useApi = () => {
     }
 
     let response = await fetcher(query);
-    console.log(response);
+
     let result = process(response);
     if (!result) {
       return errorMessage;

@@ -23,7 +23,7 @@ const DisplayPattern = ({ patterns, labels }: DisplayPatternPropType) => {
   return (
     <List>
       {combinedList.map((each) => {
-        let arrivalDate = new Date((each.serviceDay + each.realtimeArrival) * 1000);
+        let arrivalDate = new Date(each.realtimeArrival);
         return (
           <Accordion
             key={each.shortName + each.realtimeArrival.toString()}
@@ -54,13 +54,13 @@ const DisplayPattern = ({ patterns, labels }: DisplayPatternPropType) => {
                   }
                 />
                 <Typography sx={{ marginLeft: 0.5 }}>
-                  {`${each.headsign}`}
+                  {`${each.headsign ? each.headsign : ''}`}
                 </Typography>
               </Box>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                {`${labels.date}: ${arrivalDate.toLocaleDateString()}`}
+                {`${labels.date}: ${new Date(each.serviceDay).toLocaleDateString()}`}
               </Typography>
               <Typography>
                 {`${labels.arrival}: `}
@@ -75,9 +75,7 @@ const DisplayPattern = ({ patterns, labels }: DisplayPatternPropType) => {
               </Typography>
               <Typography>
                 {`${labels.departure}: `}
-                {new Date(
-                  (each.serviceDay + each.realtimeDeparture) * 1000
-                ).toLocaleTimeString()}
+                {new Date(each.realtimeDeparture).toLocaleTimeString()}
                 {each.realtime ? ` (${
                   each.arrivalDelay > 0
                     ? labels.behindSchedule
