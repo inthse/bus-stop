@@ -10,3 +10,8 @@ main {
 img {
   max-width: 500px;
 }
+
+/* disables input zoom that breaks scale on mobile*/
+input { 
+  touch-action: none; 
+}
