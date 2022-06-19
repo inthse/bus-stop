@@ -126,10 +126,14 @@ const CardBusStop = ({ labels, stop }: CardBusStopPropType) => {
           {!stop.stoptimesForPatterns || stop.stoptimesForPatterns.length === 0 ? (
             <Typography>{label.noBusses}</Typography>
           ) : (
-            <DisplayPatterns
-              patterns={stop.stoptimesForPatterns}
-              labels={labels.pattern}
-            />
+            stop.stoptimesForPatterns.map((each) => (
+              <DisplayPatterns
+                key={each.pattern.id}
+                pattern={each.pattern}
+                stoptimes={each.stoptimes}
+                labels={labels.pattern}
+              />
+            ))
           )}
         </AccordionDetails>
       </Accordion>

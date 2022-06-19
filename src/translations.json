@@ -1,34 +1,50 @@
 {
   "en": {
-    "busStop": "Bus Stop",
-    "CardBusStop": {
-      "youSelected": "You selected",
+    "app" : {
+      "busStop": "Bus Stop"
+    },
+    "busStop": {
       "stopDetails": "Stop Details",
       "locationType": "Stop or station",
       "stop": "stop",
       "station": "station",
       "zone": "Zone",
-      "routeList": "Route List",
+      "routeList": "Routes",
       "noRoutes": "No routes listed",
-      "nextBusses": "Next busses",
-      "noBusses": "No busses listed",
-      "CardRoute": ""
+      "nextBusses": "Busses",
+      "noBusses": "No busses listed"
+    },
+    "pattern": {
+      "date": "Date",
+      "arrival": "Arrival time",
+      "departure": "Departure time",
+      "aheadOfSchedule": "ahead of schedule",
+      "behindSchedule": "behind schedule",
+      "onTime": "on time"
     }
   },
   "fi": {
-    "busStop": "Bussipysäkki",
-    "CardBusStop": {
-      "youSelected": "Valintasi",
-      "stopDetails": "Bussipysäkin Tiedot",
+    "app" : {
+      "busStop": "Bussipysäkki"
+    },
+    "busStop": {
+      "stopDetails": "Bussipysäkin tiedot",
       "locationType": "Pysäkki tai asema",
       "stop": "pysäkki",
       "station": "asema",
       "zone": "Vyöhyke",
-      "routeList": "Reittiluettelo",
-      "noRoutes": "Luettelossa ei ole reittejä",
-      "nextBusses": "Seuraavat bussit:",
-      "noBusses": "Luettelossa ei ole linja-autoja",
-      "CardRoute": ""
+      "routeList": "Reitit",
+      "noRoutes": "Listalla ei ole reittejä",
+      "nextBusses": "Bussit",
+      "noBusses": "Listalla ei ole busseja"
+    },
+    "pattern": {
+      "date": "Date",
+      "arrival": "Arrival time",
+      "departure": "Departure time",
+      "aheadOfSchedule": "ahead of schedule",
+      "behindSchedule": "behind schedule",
+      "onTime": "on time"
     }
   }
 }

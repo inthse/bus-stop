@@ -1,19 +1,18 @@
-import { Card, CardContent, Chip, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, Chip, Typography } from '@mui/material';
 
 import { DetailRoute } from '../../types';
 import { BikeIcon, NoBikeIcon } from '../MaterialIcons';
 
 type CardRoutePropType = {
   route: DetailRoute;
-  labels: {
-    [key: string]: string;
-  };
 };
 
-const CardRoute = ({ route, labels }: CardRoutePropType) => (
-  <Card sx={{ marginBottom: 0.5 }}>
-    <CardContent>
+const CardRoute = ({ route }: CardRoutePropType) => (
+  <Card sx={{ display: 'flex', alignItems: 'center', marginBottom: 0.5 }}>
+    <CardMedia sx={{ padding: 1 }}>
       <Chip label={route.shortName} />
+    </CardMedia>
+    <CardContent>
       <Typography>{route.longName}</Typography>
       {route.bikesAllowed === 'NO_INFORMATION' ? (
         ''

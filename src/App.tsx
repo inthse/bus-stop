@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, CircularProgress } from '@mui/material';
 
 import { ShortStop, LangType, DetailStop } from './types';
 import TitleBar from './components/TitleBar';
@@ -26,6 +26,7 @@ const App = () => {
     locationType: '',
     wheelchairBoarding: '',
     routes: [],
+    stoptimesForPatterns: [],
   };
 
   //state getters and setters
@@ -75,7 +76,7 @@ const App = () => {
       <TitleBar lang={lang} setLang={setLang} />
       <main>
         <SelectBusStop
-          label={labels[lang].busStop}
+          label={labels[lang].app.busStop}
           value={stopValue}
           setValue={pickStop}
           options={stopList}
@@ -83,11 +84,10 @@ const App = () => {
         {!stopValue.gtfsId ? (
           <img width="100%" src={busStopImage} alt="bus stop" />
         ) : (
-          loading ? ('Loading...') : (
+          loading ? <CircularProgress /> : (
             <CardBusStop
-              labels={labels[lang].CardBusStop}
+              labels={labels[lang]}
               stop={stop}
-              stopName={stopValue.name}
             />
           )
         )}

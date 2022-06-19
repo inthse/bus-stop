@@ -46,6 +46,7 @@ const SelectBusStop = ({
       onChange={(_event, newValue) => {
         setValue(newValue);
       }}
+      blurOnSelect={true}
     />
   );
 };

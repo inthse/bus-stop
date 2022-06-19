@@ -1,0 +1,240 @@
+{
+  "data": {
+    "stop": {
+      "gtfsId": "HSL:1453128",
+      "name": "Itäkeskus (M)",
+      "desc": "Tallinnanaukio",
+      "locationType": "STOP",
+      "lat": 60.20956,
+      "lon": 25.07691,
+      "wheelchairBoarding": "NO_INFORMATION",
+      "zoneId": "B",
+      "routes": [
+        {
+          "gtfsId": "HSL:1080",
+          "shortName": "80",
+          "longName": "Herttoniemi(M)-Roihuvuori-Itäkeskus(M)",
+          "bikesAllowed": "NO_INFORMATION"
+        },
+        {
+          "gtfsId": "HSL:1082B",
+          "shortName": "82B",
+          "longName": "Herttoniemi(M)-Tammisalo-Roihuvuori-Itäkeskus(M)",
+          "bikesAllowed": "NO_INFORMATION"
+        },
+        {
+          "gtfsId": "HSL:1082",
+          "shortName": "82",
+          "longName": "Herttoniemi(M)-Roihuvuori-Itäkeskus(M)",
+          "bikesAllowed": "NO_INFORMATION"
+        }
+      ],
+      "stoptimesForPatterns": [
+        {
+          "pattern": {
+            "id": "UGF0dGVybjpIU0w6MTA4MDoxOjAx",
+            "name": "80 to Herttoniemi (M) (HSL:1431111)",
+            "headsign": "Herttoniemi(M)",
+            "directionId": 1,
+            "route": {
+              "shortName": "80"
+            }
+          },
+          "stoptimes": [
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 47580,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 47580,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": true
+            },
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 48780,
+              "arrivalDelay": -2309,
+              "realtimeDeparture": 48780,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": true
+            },
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 49980,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 49980,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": false
+            },
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 51180,
+              "arrivalDelay": 2349,
+              "realtimeDeparture": 51180,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": true
+            },
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 52380,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 52380,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": false
+            }
+          ]
+        },
+        {
+          "pattern": {
+            "id": "UGF0dGVybjpIU0w6MTA4MkI6MTowMQ==",
+            "name": "82B to Herttoniemi (M) (HSL:1431111)",
+            "headsign": "Herttoniemi(M)",
+            "directionId": 1,
+            "route": {
+              "shortName": "82B"
+            }
+          },
+          "stoptimes": [
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 78600,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 78600,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": false
+            },
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 80400,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 80400,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": false
+            },
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 82200,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 82200,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": false
+            },
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 84000,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 84000,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": false
+            },
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655672400,
+              "realtimeArrival": 18660,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 18660,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": false
+            }
+          ]
+        },
+        {
+          "pattern": {
+            "id": "UGF0dGVybjpIU0w6MTA4MjoxOjAx",
+            "name": "82 to Herttoniemi (M) (HSL:1431111)",
+            "headsign": "Herttoniemi(M)",
+            "directionId": 1,
+            "route": {
+              "shortName": "82"
+            }
+          },
+          "stoptimes": [
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 46980,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 46980,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": false
+            },
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 48180,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 48180,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": false
+            },
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 49380,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 49380,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": false
+            },
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 50580,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 50580,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": false
+            },
+            {
+              "headsign": "Herttoniemi(M) via Roihuvuori",
+              "serviceDay": 1655586000,
+              "realtimeArrival": 51780,
+              "arrivalDelay": 0,
+              "realtimeDeparture": 51780,
+              "departureDelay": 0,
+              "pickupType": "SCHEDULED",
+              "dropoffType": "NONE",
+              "realtime": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

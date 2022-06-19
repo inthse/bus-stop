@@ -1,6 +1,7 @@
 import { ShortStop, DetailStop } from '../types';
 import makeGraphQuery from '../utility/makeGraphQuery';
-import mockStops from '../testStops.json';
+import mockStops from '../mockStops.json';
+import mockStoptimes from '../mockStoptimes.json';
 
 interface ApiResponse extends Response {
   data: {
@@ -23,7 +24,7 @@ const fetcher = async (body: { query: string }): Promise<ApiResponse> => {
   let response;
   try {
     response = await fetch(baseUrl, options).then((res) => res.json());
-  } catch(err) {
+  } catch (err) {
     console.log(err);
     response = null;
   }
@@ -53,23 +54,27 @@ const useApi = () => {
       return mockStops.data.stops.filter(
         (each: ShortStop) => each.vehicleMode === 'BUS'
       );
-      /*
-      errorMessage = [{ gtfsId: '0', name: 'Error querying stops data' }];
-      query = makeGraphQuery('stops', ['gtfsId', 'name', 'vehicleMode']);
-      process = (res: ApiResponse) => {
-        let processed;
-        if (res.data.stops) {
-          processed = res.data.stops.filter(
-            (each) => each.vehicleMode === 'BUS'
-          );
-          console.log(processed.length);
-        }
-        return processed;
-      };
-      break;
-      */
+    /*
+    errorMessage = [{ gtfsId: '0', name: 'Error querying stops data' }];
+    query = makeGraphQuery('stops', ['gtfsId', 'name', 'vehicleMode']);
+    process = (res: ApiResponse) => {
+      let processed;
+      if (res.data.stops) {
+        processed = res.data.stops.filter(
+          (each) => each.vehicleMode === 'BUS'
+        );
+        console.log(processed.length);
+      }
+      return processed;
+    };
+    break;
+    */
     case 'stop':
       //use id to get particular stop details and list of buses
+
+      //for testing during development, to avoid spamming the API
+      //return mockStoptimes.data.stop as DetailStop;
+
       errorMessage = {
         gtfsId: '0',
         name: 'Error',
@@ -78,6 +83,37 @@ const useApi = () => {
       const routesNested = makeGraphQuery(
         'routes',
         ['gtfsId', 'shortName', 'longName', 'bikesAllowed'],
+        '',
+        '',
+        true
+      );
+      const patternNested = makeGraphQuery(
+        'pattern',
+        ['id', 'route {\nshortName\n}'],
+        '',
+        '',
+        true
+      );
+      const stoptimesNested = makeGraphQuery(
+        'stoptimes',
+        [
+          'headsign',
+          'serviceDay',
+          'realtimeArrival',
+          'arrivalDelay',
+          'realtimeDeparture',
+          'departureDelay',
+          'pickupType',
+          'dropoffType',
+          'realtime',
+        ],
+        '',
+        '',
+        true
+      );
+      const stoptimesForPatternsNested = makeGraphQuery(
+        'stoptimesForPatterns',
+        [patternNested.query, stoptimesNested.query],
         '',
         '',
         true
@@ -93,15 +129,18 @@ const useApi = () => {
           'lon',
           'wheelchairBoarding',
           'zoneId',
-          routesNested.query
+          routesNested.query,
+          stoptimesForPatternsNested.query
         ],
         'id',
         id
       );
       process = (res: ApiResponse) => res.data.stop;
       break;
+
     default:
-      return [];
+      process = (x) => x as unknown as undefined;
+      break;
     }
 
     let response = await fetcher(query);
